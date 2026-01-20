@@ -1,0 +1,110 @@
+# Configuration of the camera
+camera:
+{
+    resolution = { width = 1920; height = 1080; };
+    position = { x = 0; y = 0; z = 3; };
+    rotation = { x = 0; y = 0; z = 0; };
+    fieldOfView = 30.0; # In degree
+};
+
+# Primitives in the scene
+primitives:
+{
+    # List of spheres with transforms
+    spheres = (
+        {
+            x = 0.0; y = 0.0; z = 0.0;  # sphere's center position
+            r = 1.0;
+            transforms = {
+                translation = { x = 3.0; y = -1.0; z = -3.7; }  # transformation to apply
+            };
+            material = {
+                type = "matte";
+                color = { r = 255; g = 255; b = 255; };
+                roughness = 0.6; # Polished metal
+                reflectivity = 0.0;
+            };
+        }
+    );
+
+    cylinders = (
+        # 1. Glass cylinder standing vertically
+        {
+            x = 2.0; y = -2.0; z = -1.0;
+            r = 1.0;
+            height = 4.0;
+            axis = { x = 0; y = 1; z = 0; }; # Pointing up Y-axis
+            material = {
+                type = "matte";
+            };
+        }
+    );
+    
+    cubes = (
+        {
+            x = 0.0; y = 0.0; z = 0.0;  # cube's center position
+            side = 1.0;  # size of the cube
+            transforms = {
+                translation = { x = -3.0; y = 0.0; z = -3.0; };
+                #rotation = { x = 0.0; y = 80.0; z = 30.0; }; # angles in degrees
+            };
+            material = {
+                type = "glass";
+                color = { r = 255; g = 0; b = 0; }; # Red tint
+                transparency = 0.9;
+                reflectivity = 0.1;
+                refractionIndex = 1.52; # Glass refractive index
+            };
+        }
+    );
+    
+    cones = (
+        {
+            x = 0.0; y = 0.0; z = 0.0;  # cone's base position
+            r = 4.0;  # base radius
+            h = 20.0;  # height
+            cut_height = 10.0;
+            dx = 0.0; dy = 1.0; dz = 0.0;  # direction points upward
+            transforms = {
+                translation = { x = 0.0; y = -2.0; z = -10.5; };
+                rotation = { x = 30.0; y = 0.0; z = 0.0; }; # angles in degrees
+            };
+            material = {
+                type = "mirror";
+                color = { r = 220; g = 240; b = 255; }; # Light blue tint
+                reflectivity = 0.8;
+            };
+        }
+    );
+
+    # List of planes
+    planes = (
+        { 
+            axis = "Y"; 
+            position = -2.0; 
+            material = {
+                type = "matte";
+                color = { r = 255; g = 255; b = 255; };
+            };
+        }
+    );
+};
+
+# Light configuration
+lights:
+{
+    # Point light closer and more centered
+    point = (
+        { x = 1.0; y = 3.0; z = 0.0; intensity = 0.8; }
+    );
+
+    # Directional light from top-left-front
+    directional = (
+        { x = -1.0; y = -1.0; z = -1.0; intensity = 0.6; }
+    );
+
+    # Ambient light added for basic fill light
+    ambient = (
+        { x = 0.0; y = 0.0; z = 0.0; intensity = 0.2; }
+    );
+};

@@ -1,0 +1,75 @@
+camera:
+{
+    resolution = { width = 1920; height = 1080 };
+    position = { x = 0; y = 0; z = 0 };
+    rotation = { x = 0; y = 0; z = 0 };
+    fieldOfView = 72.0; # In degree
+};
+
+# Primitives in the scene
+primitives:
+{
+    # List of spheres
+    spheres = (
+        { 
+            x = 0; y = 0; z = -2; r = 1; 
+            material = {
+                type = "glass";       # Changed from mirror to glass
+                color = { r = 255; g = 255; b = 255 };
+                transparency = 0.95;  # Very transparent
+                reflectivity = 0.1;   # Low base reflectivity to see Fresnel effect better
+                refractionIndex = 1.5; # Standard glass
+            }
+        },
+        { 
+            x = 3; y = 1; z = -3; r = 1; 
+            material = {
+                type = "glass";       # Changed from metal to glass
+                color = { r = 255; g = 220; b = 64 }; # Keep the gold-like color
+                transparency = 0.85;  # Fairly transparent
+                reflectivity = 0.15;  # Slightly more reflective than center sphere
+                refractionIndex = 1.8; # Higher refraction index for comparison
+            }
+        },
+        { 
+            x = 0; y = -4; z = -4; r = 1; 
+            material = {
+                type = "glass";       # Keep as glass but modify parameters
+                color = { r = 200; g = 230; b = 255 }; 
+                transparency = 0.99;  # Almost perfectly transparent
+                reflectivity = 0.01;  # Very low base reflectivity
+                refractionIndex = 2.4; # Diamond-like for strong Fresnel
+            }
+        }
+    );
+
+    # List of planes - made more reflective to show reflections better
+    planes = (
+        { 
+            axis = "Y"; position = -2; 
+            material = {
+                type = "mirror";      # Changed from matte to mirror
+                color = { r = 255; g = 64; b = 64 };
+                reflectivity = 0.5;   # Medium reflectivity
+            }
+        }
+    );
+};
+
+lights:
+{
+    # Point light closer and more centered
+    point = (
+        { x = 1; y = 3; z = 0; intensity = 0.8 }
+    );
+
+    # Directional light from top-left-front
+    directional = (
+        { x = -1; y = -1; z = -1; intensity = 0.6 }
+    );
+
+    # Ambient light added for basic fill light
+    ambient = (
+        { x = 0; y = 0; z = 0; intensity = 0.2 }
+    );
+};

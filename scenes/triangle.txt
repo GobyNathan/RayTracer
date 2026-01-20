@@ -1,0 +1,45 @@
+camera:
+{
+    resolution = { width = 1920; height = 1080 };
+    position = { x = 0; y = 0; z = 0 };
+    rotation = { x = 0; y = 0; z = 0 };
+    fieldOfView = 72.0; # In degree
+};
+
+primitives:
+{
+    triangles = (
+        {
+            vertices = {
+                v1 = { x = 1.0, y = 0.0, z = -2.0 }
+                v2 = { x = 2.0, y = 0.0, z = -2.0 }
+                v3 = { x = 3.0, y = 1.0, z = -2.0 }
+            }
+            material = {
+                type = "matte";
+                color = { r = 255; g = 0; b = 0 };
+            }
+        }
+    );
+    planes = (
+        { axis = "Y"; position = -2.0; color = { r = 64; g = 64; b = 255 } }
+    );
+};
+
+lights:
+{
+    # Point light closer and more centered
+    point = (
+        { x = 1.0; y = 3.0; z = 0.0; intensity = 0.8 }
+    );
+
+    # Directional light from top-left-front
+    directional = (
+        { x = -1.0; y = -1.0; z = -1.0; intensity = 0.6 }
+    );
+
+    # Ambient light added for basic fill light
+    ambient = (
+        { x = 0.0; y = 0.0; z = 0.0; intensity = 0.2 }
+    );
+};

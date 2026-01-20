@@ -1,0 +1,67 @@
+# Example scene configuration with enhanced materials
+camera:
+{
+    resolution = { width = 1920; height = 1080; };
+    position = { x = 0; y = -100; z = 20; };
+    rotation = { x = 0; y = 0; z = 0; };
+    fieldOfView = 72.0;
+};
+
+primitives:
+{
+    # Glass sphere
+    spheres = (
+        {
+            x = 0; y = 0; z = -50; r = 25;
+            material = {
+                type = "glass";
+                color = { r = 255; g = 255; b = 255; };
+                transparency = 0.95;
+                reflectivity = 0.1;
+                refractionIndex = 1.5;
+            };
+        },
+        # Mirror sphere
+        {
+            x = -50; y = 20; z = -30; r = 20;
+            material = {
+                type = "mirror";
+                color = { r = 200; g = 200; b = 220; };
+                reflectivity = 0.95;
+            };
+        },
+        # Colored glass sphere (like a ruby)
+        {
+            x = 50; y = 10; z = -40; r = 15;
+            material = {
+                type = "glass";
+                color = { r = 255; g = 30; b = 50; };
+                transparency = 0.8;
+                reflectivity = 0.2;
+                refractionIndex = 1.6;
+            };
+        }
+    );
+    # Floor plane
+    planes = (
+        {
+            axis = "Z"; position = -80;
+            material = {
+                type = "mirror";
+                color = { r = 200; g = 200; b = 200; };
+                reflectivity = 0.3;
+            };
+        }
+    );
+};
+
+lights:
+{
+    ambient = 0.2;
+    directional = (
+        { x = 1; y = -1; z = -1; intensity = 0.7; }
+    );
+    point = (
+        { x = 50; y = 50; z = 50; intensity = 0.8; }
+    );
+};

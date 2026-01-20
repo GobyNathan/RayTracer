@@ -1,0 +1,84 @@
+# Debug scene - sphere at cylinder position
+
+camera:
+{
+    resolution = { width = 1920; height = 1080 };
+    position = { x = 0; y = 0; z = 15 };
+    rotation = { x = 0; y = 0; z = 0 };
+    fieldOfView = 72.0; # In degree
+};
+
+primitives:
+{
+
+    # List of planes
+    planes = (
+        { axis = "Y"; position = -2; color = { r = 255; g = 0; b = 0 } }
+    );
+
+    spheres = (
+        { 
+            x = 0; y = 0; z = -2; r = 1; 
+            material = {
+                type = "mirror";
+                color = { r = 255; g = 255; b = 255 };
+                transparency = 0.95;  # Very transparent
+                reflectivity = 0.1;   # Low base reflectivity to see Fresnel effect better
+                refractionIndex = 1.5; # Standard glass
+            }
+        },
+        { 
+            x = 3; y = 1; z = -3; r = 1; 
+            material = {
+                type = "glass";
+                color = { r = 255; g = 220; b = 64 }; # Keep the gold-like color
+                transparency = 0.85;  # Fairly transparent
+                reflectivity = 0.15;  # Slightly more reflective than center sphere
+                refractionIndex = 1.8; # Higher refraction index for comparison
+            }
+        },
+        { 
+            x = 0; y = -4; z = -4; r = 1; 
+            material = {
+                type = "glass";
+                color = { r = 200; g = 230; b = 255 }; 
+                transparency = 0.99;  # Almost perfectly transparent
+                reflectivity = 0.01;  # Very low base reflectivity
+                refractionIndex = 2.4; # Diamond-like for strong Fresnel
+            }
+        }
+    );
+    cylinders = (
+        { 
+            x = 0; y = -1; z = -2;
+            r = 1;
+            height = 0.2;
+            axis = { x = 0; y = 1; z = 0; };
+            material = {
+                type = "mirror";
+                color = { r = 200; g = 200; b = 220; };
+                reflectivity = 0.95;
+            };
+        }
+    );
+
+    
+};
+
+lights:
+{
+    # Point light closer and more centered
+    point = (
+        { x = 1; y = 3; z = 0; intensity = 0.8 }
+    );
+
+    # Directional light from top-left-front
+    directional = (
+        { x = -1; y = -1; z = -1; intensity = 0.6 }
+    );
+
+    # Ambient light added for basic fill light
+    ambient = (
+        { x = 0; y = 0; z = 0; intensity = 0.2 }
+    );
+};

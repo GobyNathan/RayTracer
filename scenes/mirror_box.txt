@@ -1,0 +1,70 @@
+# Configuration of the camera
+camera:
+{
+    resolution = { width = 1920; height = 1080; };
+    position = { x = 0; y = 0; z = 3; };
+    rotation = { x = 0; y = 0; z = 0; };
+    fieldOfView = 70.0; # In degree
+};
+
+primitives:
+{
+    cubes = (
+        {
+            x = 0.0; y = 0.0; z = -23.0;  # cube's center position
+            side = 15.0;  # size of the cube
+            material = {
+                type = "mirror";
+            };
+        },
+        {
+            x = 14.7; y = 0.0; z = -8.0;  # cube's center position
+            side = 15.0;  # size of the cube
+            material = {
+                type = "mirror";
+            };
+        },
+        {
+            x = -14.7; y = 0.0; z = -8.0;  # cube's center position
+            side = 15.0;  # size of the cube
+            material = {
+                type = "mirror";
+            };
+        }
+    );
+
+    # List of planes
+    planes = (
+        {
+            axis = "Y";
+            position = -2.0;
+            material = {
+                type = "matte";
+                color = { r = 255; g = 255; b = 255; };
+            };
+        }
+    );
+};
+
+objects = (
+
+);
+
+
+
+# Light configuration
+lights:
+{
+    point = (
+        { x = 0.0; y = 0.0; z = -3.0; intensity = 0.3; }
+    );
+    # Directional light from top-left-front
+    directional = (
+        { x = -1.0; y = -1.0; z = -1.0; intensity = 0.6; }
+    );
+
+    # Ambient light added for basic fill light
+    ambient = (
+        { x = 0.0; y = 0.0; z = 0.0; intensity = 0.2; }
+    );
+};

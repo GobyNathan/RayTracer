@@ -1,0 +1,173 @@
+camera:
+{
+    resolution = { width = 1920; height = 1080 };
+    position = { x = 0; y = 0; z = 0 }; # Moved back and up slightly
+    rotation = { x = -10; y = 0; z = 0 }; # Tilt down slightly
+    fieldOfView = 60.0;
+};
+
+# Primitives in the scene
+primitives:
+{
+    # List of cylinders demonstrating various aspects
+    cylinders = (
+        # 1. Glass cylinder standing vertically
+        {
+            x = -4; y = -2; z = 0;
+            r = 1.0;
+            height = 4.0;
+            axis = { x = 0; y = 1; z = 0; }; # Pointing up Y-axis
+            material = {
+                type = "glass";
+                color = { r = 220; g = 240; b = 255 }; # Light blue tint
+                transparency = 0.9;
+                reflectivity = 0.1;
+                refractionIndex = 1.52; # Glass refractive index
+            }
+        },
+
+        # 2. Metallic cylinder laying horizontally along X - INFINITE
+        {
+            x = 0; y = -1; z = 0;
+            r = 0.75;
+            height = 0;  # Changed from 8.0 to 0 for infinite cylinder
+            axis = { x = 1; y = 0; z = 0; }; # Pointing along X-axis
+            material = {
+                type = "metal";
+                color = { r = 200; g = 200; b = 200 }; # Silver color
+                roughness = 0.1; # Polished metal
+                reflectivity = 0.8;
+            }
+        },
+
+        # 3. Gold reflective cylinder at an angle
+        {
+            x = 4; y = -2; z = 0;
+            r = 0.8;
+            height = 5.0;
+            axis = { x = 0.5; y = 1; z = 0; }; # Angled up and to the right
+            material = {
+                type = "mirror";
+                color = { r = 255; g = 215; b = 0 }; # Gold color
+                reflectivity = 0.9;
+            }
+        },
+
+        # 4. Ruby-colored transparent cylinder
+        {
+            x = -2; y = -2; z = -3;
+            r = 0.6;
+            height = 3.0;
+            axis = { x = 0.3; y = 1; z = 0.2; }; # Slightly angled
+            material = {
+                type = "translucent";
+                color = { r = 220; g = 20; b = 60 }; # Ruby red
+                transparency = 0.7;
+                refractionIndex = 1.77; # Ruby refractive index
+            }
+        },
+
+        # 5. Diamond cylinder - showing complex refraction and reflection
+        {
+            x = 2; y = -2; z = -3;
+            r = 0.5;
+            height = 2.5;
+            axis = { x = -0.2; y = 1; z = 0.1; }; # Slightly angled
+            material = {
+                type = "diamond";
+                color = { r = 240; g = 240; b = 255 }; # Very light blue
+                transparency = 0.95;
+                reflectivity = 0.2;
+                refractionIndex = 2.42; # Diamond refractive index
+            }
+        },
+
+        # 6. Composite material cylinder - mixture of metal and glass
+        {
+            x = 0; y = -2; z = -6;
+            r = 1.2;
+            height = 3.0;
+            axis = { x = 0; y = 1; z = 0; }; # Vertical
+            material = {
+                type = "composite";
+                color = { r = 200; g = 180; b = 220 }; # Light purple
+                materials = (
+                    {
+                        type = "glass";
+                        color = { r = 220; g = 220; b = 255 };
+                        transparency = 0.8;
+                        reflectivity = 0.1;
+                        refractionIndex = 1.5;
+                        weight = 0.6;
+                    },
+                    {
+                        type = "metal";
+                        color = { r = 160; g = 120; b = 180 };
+                        roughness = 0.2;
+                        reflectivity = 0.7;
+                        weight = 0.4;
+                    }
+                );
+            }
+        }
+    );
+
+    # Add spheres to showcase cylinder interactions
+    spheres = (
+        {
+            x = -4; y = 1; z = 1; r = 0.7;
+            material = {
+                type = "matte";
+                color = { r = 255; g = 100; b = 100 }; # Red
+            }
+        },
+        {
+            x = 0; y = 1; z = 1; r = 0.7;
+            material = {
+                type = "metal";
+                color = { r = 100; g = 255; b = 100 }; # Green
+                roughness = 0.1;
+            }
+        },
+        {
+            x = 4; y = 1; z = 1; r = 0.7;
+            material = {
+                type = "glass";
+                color = { r = 100; g = 100; b = 255 }; # Blue
+                transparency = 0.9;
+            }
+        }
+    );
+
+    # Add a plane for the floor
+    planes = (
+        {
+            axis = "Y"; position = -2;
+            material = {
+                type = "mirror";
+                color = { r = 225; g = 225; b = 225 }; # Light gray
+                reflectivity = 0.3; # Subtle floor reflection
+            }
+        }
+    );
+};
+
+lights:
+{
+    # Increased ambient light
+    ambient = (
+        { x = 0; y = 0; z = 0; intensity = 0.4 }
+    );
+
+    # Brighter and better positioned point lights
+    point = (
+        { x = -5; y = 10; z = 5; intensity = 1.0 },
+        { x = 8; y = 8; z = -2; intensity = 0.8 },
+        { x = 0; y = 5; z = 10; intensity = 0.6 } # New front light
+    );
+
+    # Stronger directional light
+    directional = (
+        { x = -0.5; y = -1; z = -0.7; intensity = 0.6 }
+    );
+};

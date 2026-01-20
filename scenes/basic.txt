@@ -1,0 +1,88 @@
+# Configuration of the camera
+camera:
+{
+    resolution = { width = 1920; height = 1080 };
+    position = { x = 0; y = 0; z = 0 };
+    rotation = { x = 0; y = 0; z = 0 };
+    fieldOfView = 72.0; # In degree
+};
+
+# Primitives in the scene
+primitives:
+{
+    # List of spheres with transforms
+    spheres = (
+    {
+        x = 0.0; y = 0.0; z = 0.0;  # sphere's center position
+        r = 1.0;
+        transforms = {
+            translation = { x = 3.0; y = -2.0; z = -3.0; }  # transformation to apply
+        }
+        material = {
+            type = "metal";
+            color = { r = 255; g = 255; b = 255 };
+            reflection = 0.0;
+        }
+    }
+);
+cubes = (
+    {
+        x = 0.0; y = 0.0; z = 0.0;  # cube's center position
+        side = 1.0;  # size of the cube
+        transforms = {
+            translation = { x = -3.0; y = -2.0; z = -3.0; }
+            #rotation = { x = 0.0; y = 80.0; z = 30.0; } # angles in degrees
+        }
+    }
+);
+cones = (
+    {
+        x = 0.0; y = 0.0; z = 0.0;  # cone's base position
+        r = 4.0;  # base radius
+        h = 20.0;  # height
+        cut_height = 10.0;
+        dx = 0.0; dy = 1.0; dz = 0.0;  # direction points upward
+        transforms = {
+            translation = { x = 0.0; y = -2.0; z = -10.5; }
+            #rotation = { x = 30.0; y = 0.0; z = 0.0; } # angles in degrees
+        }
+        material = {
+                type = "mirror";
+                color = { r = 220; g = 240; b = 255 }; # Light blue tint
+                reflectivity = 0.8;
+            }
+    }
+);
+
+
+
+
+    # List of planes
+    planes = (
+        { axis = "Y"; position = -2.0; color = { r = 64; g = 64; b = 255 }
+        material = {
+                type = "glass";
+                color = { r = 220; g = 240; b = 255 }; # Light blue tint
+                reflectivity = 1.0;
+            }
+        }
+    );
+};
+
+lights:
+{
+    # Point light closer and more centered
+    point = (
+        { x = 1.0; y = 3.0; z = 0.0; intensity = 0.8; shading_model = 1 }
+    );
+
+    # Directional light from top-left-front
+    directional = (
+        { x = -1.0; y = -1.0; z = -1.0; intensity = 0.6; shading_model = 1 }
+    );
+
+    # Ambient light added for basic fill light
+    ambient = (
+        { x = 0.0; y = 0.0; z = 0.0; intensity = 0.2; shading_model = 1 }
+    );
+};

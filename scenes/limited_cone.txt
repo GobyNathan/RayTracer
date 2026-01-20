@@ -1,0 +1,53 @@
+# Configuration of the camera
+camera:
+{
+    resolution = { width = 1920; height = 1080 };
+    position = { x = 0; y = 0; z = 0 };
+    rotation = { x = 0; y = 0; z = 0 };
+    fieldOfView = 72.0;
+};
+
+# Primitives in the scene
+primitives:
+{
+    # Limited cone to showcase the truncated top
+    cones = (
+        {
+            x = 0.0; y = -2.0; z = -5.0;      # Position slightly to the right and back
+            r = 2.0; h = 6.0;              # Base radius 1, total height 2
+            cut_height = 4.0;          # Cut at 75% of total height
+            dx = 0.0; dy = 1.0; dz = 1.0;    # Pointing straight up
+            material = {
+                type = "matte";
+                color = { r = 255; g = 64; b = 64 }
+            }
+        }
+
+    );
+
+    # Base plane to better show the 3D effect
+    planes = (
+        {
+            axis = "Y";
+            position = -2.0;
+            material = {
+                type = "matte";
+                color = { r = 64; g = 64; b = 255 }
+            }
+        }
+    );
+};
+
+# Lighting setup to highlight the truncated surface
+lights:
+{
+    # Main light from top-left-front to show the truncated surface
+    directional = (
+        { x = -1.0; y = -1.0; z = -1.0; intensity = 0.6 }
+    );
+
+    # Ambient light for better overall visibility
+    ambient = (
+        { x = 0.0; y = 0.0; z = 0.0; intensity = 0.2 }
+    );
+};

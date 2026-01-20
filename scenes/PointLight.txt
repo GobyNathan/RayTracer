@@ -1,0 +1,65 @@
+# Configuration of the camera
+camera:
+{
+    resolution = { width = 1920; height = 1080 };
+    position = { x = 0; y = 0; z = 0 };
+    rotation = { x = 0; y = 0; z = 0 };
+    fieldOfView = 72.0; # In degree
+};
+
+# Primitives in the scene
+primitives:
+{
+    # List of spheres
+    spheres = (
+        { x = 0.0; y = 0.0; z = -2.0; r = 1.0; color = { r = 255; g = 64; b = 64 } },
+        { x = 3.0; y = 1.0; z = -3.0; r = 1.0; color = { r = 255; g = 64; b = 64 } },
+        { x = 0.0; y = -4.0; z = -4.0; r = 1.0; color = { r = 64; g = 255; b = 64 } }
+    );
+
+    # List of planes
+    planes = (
+        { axis = "Y"; position = -2.0; color = { r = 64; g = 64; b = 255 } }
+    );
+};
+
+lights:
+{
+    # Multiple point lights for better lighting effects
+    point = (
+        # Main light from above right
+        { 
+            x = 3.0; 
+            y = 4.0; 
+            z = -1.0; 
+            intensity = 0.7; 
+            attenuation = 0.02;  # Gradual falloff for main light
+        },
+        # Fill light from left
+        { 
+            x = -3.0; 
+            y = 2.0; 
+            z = 0.0; 
+            intensity = 0.4; 
+            attenuation = 0.01;  # Very slow falloff to fill shadows
+        },
+        # Back rim light
+        { 
+            x = 0.0; 
+            y = -1.0; 
+            z = -6.0; 
+            intensity = 0.6; 
+            attenuation = 0.01;  # Slower falloff to reach from behind
+        }
+    );
+
+    # Directional light from top-left-front
+    directional = (
+        { x = -1.0; y = -1.0; z = -1.0; intensity = 0.6 }
+    );
+
+    # Ambient light added for basic fill light
+    ambient = (
+        { x = 0.0; y = 0.0; z = 0.0; intensity = 0.2 }
+    );
+};

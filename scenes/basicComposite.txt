@@ -1,0 +1,126 @@
+# Configuration of the camera
+camera:
+{
+    resolution = { width = 1920; height = 1080 };
+    position = { x = 0; y = 0; z = 0 };
+    rotation = { x = 0; y = 0; z = 0 };
+    fieldOfView = 72.0; # In degree
+};
+
+# Primitives in the scene
+primitives:
+{
+    # List of spheres
+    spheres = (
+        { 
+            x = 0; y = 0; z = -2; r = 1; 
+            material = {
+                type = "diamond";
+                color = { r = 240; g = 240; b = 255 };
+                transparency = 0.95;
+                reflectivity = 0.2;
+                refractionIndex = 2.42;
+                dispersion = 0.044;
+            }
+        },
+        { 
+            x = 3; y = 1; z = -3; r = 1; 
+            material = {
+                type = "composite";
+                color = { r = 255; g = 220; b = 64 };
+                materials = (
+                    { 
+                        type = "metal"; 
+                        weight = 0.8;
+                        color = { r = 255; g = 220; b = 64 };
+                        roughness = 0.2;
+                        reflectivity = 0.5;
+                    },
+                    { 
+                        type = "matte"; 
+                        weight = 0.2;
+                        color = { r = 255; g = 220; b = 64 }; 
+                    }
+                );
+            }
+        },
+        { 
+            x = 0; y = -4; z = -4; r = 1; 
+            material = {
+                type = "glass";
+                color = { r = 200; g = 230; b = 255 };
+                transparency = 0.8;
+                refractionIndex = 1.5;
+            }
+        },
+        { 
+            x = -3; y = 0; z = -3; r = 1.5; 
+            material = {
+                type = "composite";
+                color = { r = 220; g = 220; b = 255 };
+                materials = (
+                    { 
+                        type = "diamond"; 
+                        weight = 0.8;
+                        color = { r = 220; g = 220; b = 255 };
+                        transparency = 0.95;
+                        reflectivity = 0.3;
+                        refractionIndex = 2.42;
+                        dispersion = 0.044;
+                    },
+                    { 
+                        type = "metal"; 
+                        weight = 0.2;
+                        color = { r = 200; g = 200; b = 220 };
+                        roughness = 0.1;
+                        reflectivity = 0.7;
+                    }
+                );
+            }
+        }
+    );
+
+    # List of planes
+    planes = (
+        { 
+            axis = "Y"; position = -2; 
+            material = {
+                type = "composite";
+                color = { r = 255; g = 255; b = 255 };
+                materials = (
+                    { 
+                        type = "glass"; 
+                        weight = 0.6;
+                        color = { r = 255; g = 255; b = 255 }; 
+                        transparency = 0.95;
+                        refractionIndex = 1.5;
+                    },
+                    { 
+                        type = "mirror"; 
+                        weight = 0.4;
+                        color = { r = 255; g = 255; b = 255 };
+                        reflectivity = 0.9;
+                    }
+                );
+            }
+        }
+    );
+};
+
+lights:
+{
+    # Point light closer and more centered
+    point = (
+        { x = 1; y = 3; z = 0; intensity = 0.8 }
+    );
+
+    # Directional light from top-left-front
+    directional = (
+        { x = -1; y = -1; z = -1; intensity = 0.6 }
+    );
+
+    # Ambient light added for basic fill light
+    ambient = (
+        { x = 0; y = 0; z = 0; intensity = 0.2 }
+    );
+};

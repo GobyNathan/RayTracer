@@ -1,0 +1,155 @@
+# Configuration of the camera
+camera:
+{
+    resolution = { width = 1920; height = 1080 };
+    position = { x = 0; y = 0; z = 0 };
+    rotation = { x = 0; y = 0; z = 0 };
+    fieldOfView = 72.0; # In degree
+};
+
+# Primitives in the scene
+primitives:
+{
+    toruses = (
+        {
+            x = 3.0; y = 2.0; z = 2.0;
+            R = 2.0;   # Major radius
+            r = 0.5;   # Minor radius
+            axis = { x = 0; y = 0; z = 1; };
+            color = { r = 255; g = 64; b = 64; };
+        },
+        {
+            x = 3.0; y = 1.0; z = -6.0;
+            R = 1.0;   # Major radius
+            r = 0.3;   # Minor radius
+            axis = { x = 1; y = 1; z = 0; };
+            material = {
+                type = "mirror";
+                reflectivity = 0.8;
+                color = { r = 200; g = 200; b = 200; };
+            };
+        }
+    );
+    # List of spheres with transforms
+    spheres = (
+    {
+        x = 0.0; y = 0.0; z = 0.0;  # sphere's center position
+        r = 1.0;
+        transforms = {
+            translation = { x = 3.0; y = -2.0; z = -3.0; }  # transformation to apply
+        }
+        material = {
+            type = "metal";
+            color = { r = 255; g = 255; b = 255 };
+            reflection = 0.0;
+        }
+    }
+);
+cubes = (
+    {
+        x = 0.0; y = 0.0; z = 0.0;  # cube's center position
+        side = 1.0;  # size of the cube
+        transforms = {
+            translation = { x = -3.0; y = -2.0; z = -3.0; }
+            rotation = { x = 0.0; y = 80.0; z = 30.0; } # angles in degrees
+        }
+    }
+);
+cones = (
+    {
+        x = 0.0; y = 0.0; z = 0.0;  # cone's base position
+        r = 4.0;  # base radius
+        h = 20.0;  # height
+        cut_height = 10.0;
+        dx = 0.0; dy = 1.0; dz = 0.0;  # direction points upward
+        transforms = {
+            translation = { x = 0.0; y = -2.0; z = -10.5; }
+            #rotation = { x = 30.0; y = 0.0; z = 0.0; } # angles in degrees
+        }
+        material = {
+                type = "mirror";
+                color = { r = 220; g = 240; b = 255 }; # Light blue tint
+                reflectivity = 0.8;
+            }
+    }
+);
+
+    # List of planes
+    planes = (
+        { axis = "Y"; position = -2.0; color = { r = 64; g = 64; b = 255 }
+        material = {
+                type = "glass";
+                color = { r = 220; g = 240; b = 255 }; # Light blue tint
+                reflectivity = 1.0;
+            }
+        }
+    );
+};
+
+lights:
+{
+    # Enhanced point lights with intense colors for dramatic effect
+    point = (
+        # Key light - intense red light
+        { 
+            x = 4.0; 
+            y = 5.0; 
+            z = 2.0; 
+            intensity = 1.5;  # Higher intensity for more pronounced effect
+            color = { r = 255; g = 30; b = 30 };  # Intense red
+            attenuation = 0.01;  # Adjusted falloff
+        },
+        
+        # Fill light - cyan color
+        { 
+            x = -5.0; 
+            y = 3.0; 
+            z = -1.0; 
+            intensity = 0.8;  # Increased for better visibility
+            color = { r = 0; g = 220; b = 255 };  # Bright cyan
+            attenuation = 0.01;  # Adjusted falloff
+        },
+        
+        # Rim light - purple light
+        { 
+            x = 0.0; 
+            y = 4.0; 
+            z = -15.0; 
+            intensity = 1.0;  # Increased to make it more visible
+            color = { r = 180; g = 20; b = 255 };  # Vibrant purple
+            attenuation = 0.005;  # Very slow falloff to reach from far back
+        },
+        
+        # Accent light - bright yellow/orange
+        { 
+            x = -4.0; 
+            y = -1.0; 
+            z = -4.0; 
+            intensity = 0.7;  # Increased for better visibility
+            color = { r = 255; g = 200; b = 0 };  # Vibrant yellow/orange
+            attenuation = 0.02;  # Adjusted falloff
+        }
+    );
+
+    # Directional light - cool blue color
+    directional = (
+        { 
+            x = -1.0; 
+            y = -1.0; 
+            z = -1.0; 
+            intensity = 0.4;  # Reduced to let colored lights dominate
+            color = { r = 150; g = 180; b = 255 };  # Cool blue
+        }
+    );
+
+    # Ambient light - slight green tint for contrast
+    ambient = (
+        { 
+            x = 0.0; 
+            y = 0.0; 
+            z = 0.0; 
+            intensity = 0.15;  # Reduced to let colored lights dominate
+            color = { r = 180; g = 255; b = 180 };  # Slight green tint
+        }
+    );
+};

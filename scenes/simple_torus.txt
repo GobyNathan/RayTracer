@@ -1,0 +1,46 @@
+# Simple torus test scene
+camera:
+{
+    resolution = { width = 800; height = 600 };  # Lower resolution for faster testing
+    position = { x = 0; y = -10; z = 0 };        # Camera positioned back on Y axis
+    rotation = { x = 0; y = 0; z = 0 };          # Looking straight ahead
+    fieldOfView = 60.0;                          # Narrower field of view
+};
+
+primitives:
+{
+    toruses = (
+        { 
+            x = 0.0; y = 0.0; z = -10.0;         # Positioned in front of camera
+            axis = { x = 0.0; y = 0.0; z = 1.0 }; # Z-axis aligned torus
+            R = 2.0;                             # Major radius
+            r = 0.5;                             # Minor radius
+            material = {
+                type = "matte";                  # Simple material to start
+                color = { r = 255; g = 0; b = 0 }; # Bright red for visibility
+            };
+        }
+    );
+
+    # Add a plane for reference
+    planes = (
+        { 
+            axis = "Y"; 
+            position = -3.0; 
+            color = { r = 100; g = 100; b = 200 }; 
+        }
+    );
+};
+
+lights:
+{
+    # Strong directional light from camera direction
+    directional = (
+        { x = 0.0; y = -1.0; z = 0.0; intensity = 0.7 }
+    );
+    
+    # Ambient light to ensure everything is visible
+    ambient = (
+        { x = 0.0; y = 0.0; z = 0.0; intensity = 0.3 }
+    );
+};
